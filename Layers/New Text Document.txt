@@ -1,0 +1,14 @@
+Can you make me 10000 points in the same format?
+
+I want to change the latitude and longitude values. There should be a bit of variation - I will give you several sections.
+
+Section 1 - for longitude values between -127 and -95 and latitude values between 49 and 67, I want 4000 points. Make sure 3500 of the points are below the 60th parallel 
+
+Section 2 - for longitude values between -82 and - 70 and latitude between 45 and 50, I want 2000 points. Make sure 1500 of these points are beneath the 48th parallel.
+
+Section 3 - for longitude between -79.1 and -81.5 and latitude  between 44.3 and 43.68, I want 1000 points.
+
+Section 4 - for longitude between -67 and -65.3 and and latitude 45.8 and 45.9, I want 500 points.
+
+Section 5 - for longitude between -63.59 and -63.23 and latitude 
+
