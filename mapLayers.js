@@ -72,14 +72,24 @@ export function addPolygonLayer(map) {
         return quantiles;
     };
 
-    // Create a color scale from white to red
+    
+    // To be used until I sort out the choropleth
     const getColor = (value, quantiles) => {
-        if (value <= quantiles[0]) return '#ffffff';
-        if (value <= quantiles[1]) return '#ffcccc';
-        if (value <= quantiles[2]) return '#ff9999';
-        if (value <= quantiles[3]) return '#ff6666';
-        return '#ff0000';
+        return '#E53935';
     };
+
+    // ==================================================================
+    // For when I figure out how to show the choropleth
+    // ==================================================================
+    // Create a color scale from white to red
+    // const getColor = (value, quantiles) => {
+    //     if (value <= quantiles[0]) return '#ffffff';
+    //     if (value <= quantiles[1]) return '#ffcccc';
+    //     if (value <= quantiles[2]) return '#ff9999';
+    //     if (value <= quantiles[3]) return '#ff6666';
+    //     return '#ff0000';
+    // };
+    // ==================================================================
 
 
     // Create the GeoJSON layer for census divisions
