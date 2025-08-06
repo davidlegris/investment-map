@@ -51,6 +51,7 @@ export function initializeLeftPanel() {
     sidePanel.style.padding = "20px";
     sidePanel.style.boxSizing = "border-box";
     sidePanel.style.display = "block"; // Initially visible
+    sidePanel.style.transition = "all 0.3s ease"; // Smooth transition for responsive changes
 
     // Create a header for the panel
     const panelHeader = document.createElement("h2");
@@ -78,21 +79,52 @@ export function initializeLeftPanel() {
     const mapContainer = document.getElementById("map");
     if (mapContainer) {
         mapContainer.appendChild(sidePanel);
-        console.log("Panel added to map container");
-        
+
         // Show default message initially
         if (selectedLanguage === 'fr') {
             showDefaultMessageFR();
         } else {
             showDefaultMessageEN();    
         }
+        
+        // Add resize listener for responsive behavior
+        window.addEventListener('resize', handleResize);
+        
+        // Initialize responsive positioning
+        handleResize();
     
     } else {
         console.error("Map container not found");
     }
 }
 
-
+// Function to handle window resize for responsive panel positioning
+function handleResize() {
+    const sidePanel = document.getElementById("side-panel");
+    if (!sidePanel) return;
+    
+    const windowWidth = window.innerWidth;
+    
+    if (windowWidth <= 768) {
+        // Mobile layout - panel at bottom with floating margins
+        sidePanel.style.left = windowWidth <= 480 ? "3%" : "2%";
+        sidePanel.style.top = "auto";
+        sidePanel.style.bottom = windowWidth <= 480 ? "3%" : "2%";
+        sidePanel.style.width = windowWidth <= 480 ? "94%" : "96%";
+        sidePanel.style.height = windowWidth <= 480 ? "25%" : "40%";
+        sidePanel.style.borderRadius = "8px";
+        sidePanel.style.boxShadow = "0 -2px 10px rgba(0, 0, 0, 0.3)";
+    } else {
+        // Desktop layout - panel on left
+        sidePanel.style.left = "2%";
+        sidePanel.style.top = "15%";
+        sidePanel.style.bottom = "auto";
+        sidePanel.style.width = "20%";
+        sidePanel.style.height = "70%";
+        sidePanel.style.borderRadius = "8px";
+        sidePanel.style.boxShadow = "0 0 10px rgba(0, 0, 0, 0.3)";
+    }
+}
 
 // ===================================================
 // Function to update panel content with selected point(s)

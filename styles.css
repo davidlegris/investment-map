@@ -208,6 +208,86 @@ html, body {
     #english-text, #french-text {
         font-size: 1em;
     }
+    
+    /* Move side panel to bottom on mobile */
+    #side-panel {
+        left: 2%;
+        top: auto;
+        bottom: 2%;
+        width: 96%;
+        height: 40%;
+        border-radius: 8px;
+        box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
+    }
+    
+    /* Adjust floating header for mobile */
+    #floating-header {
+        width: 80%;
+        top: 1%;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    /* Further adjustments for very small screens */
+    #side-panel {
+        height: 50%;
+        padding: 15px;
+        left: 3%;
+        bottom: 3%;
+        width: 94%;
+    }
+    
+    #floating-header {
+        width: 90%;
+        padding: 10px;
+    }
+    
+    #english-text, #french-text {
+        font-size: 0.9em;
+    }
+    
+    /* Improve touch interactions on mobile */
+    #side-panel h2,
+    #side-panel h3,
+    #side-panel h4 {
+        font-size: 1.1em;
+        margin-bottom: 10px;
+    }
+    
+    #side-panel p {
+        font-size: 0.95em;
+        line-height: 1.5;
+    }
+}
+
+/* Additional mobile optimizations */
+@media screen and (max-width: 768px) {
+    /* Ensure the map container doesn't interfere with the bottom panel */
+    #map {
+        height: 100vh;
+        width: 100vw;
+    }
+    
+    /* Improve scrolling on mobile */
+    #side-panel {
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: thin;
+    }
+    
+    /* Hide scrollbar on webkit browsers for cleaner look */
+    #side-panel::-webkit-scrollbar {
+        width: 4px;
+    }
+    
+    #side-panel::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 2px;
+    }
+    
+    #side-panel::-webkit-scrollbar-thumb {
+        background: #c1c1c1;
+        border-radius: 2px;
+    }
 }
 
 .custom-popup .leaflet-popup-content-wrapper {
@@ -223,4 +303,14 @@ html, body {
 
 .custom-popup .leaflet-popup-tip {
     background: white;
+}
+
+/* Search bar styles */
+#search-container {
+    transition: opacity 0.3s ease;
+}
+
+#search-container.hidden {
+    opacity: 0;
+    pointer-events: none;
 }

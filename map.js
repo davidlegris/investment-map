@@ -7,11 +7,14 @@ import { addPolygonLayer, addPointLayer } from './mapLayers.js';
 import { selectedLanguage } from './languageSelector.js';
 
 //====================================================================
-// Add Search Control
+// Create a global map variable
 //====================================================================
 
-// Create a global map variable
 let map;
+
+//====================================================================
+// Add Search Control
+//====================================================================
 
 // Function to create and add the search control
 function addSearchControl() {
@@ -26,6 +29,7 @@ function addSearchControl() {
     searchContainer.style.padding = '10px';
     searchContainer.style.borderRadius = '4px';
     searchContainer.style.boxShadow = '0 1px 5px rgba(0,0,0,0.2)';
+    searchContainer.style.transition = 'opacity 0.3s ease';
 
     // Create search input
     const searchInput = document.createElement('input');
@@ -84,6 +88,37 @@ function addSearchControl() {
 
     // Update placeholder when language changes
     document.addEventListener('languageChanged', updateSearchPlaceholder);
+    
+    // Add collision detection for search bar and floating header
+    function checkSearchBarCollision() {
+        const searchContainer = document.getElementById('search-container');
+        const floatingHeader = document.getElementById('floating-header');
+        
+        if (!searchContainer || !floatingHeader) return;
+        
+        const searchRect = searchContainer.getBoundingClientRect();
+        const headerRect = floatingHeader.getBoundingClientRect();
+        
+        // Check if search bar overlaps with floating header
+        const isColliding = !(searchRect.right < headerRect.left || 
+                             searchRect.left > headerRect.right || 
+                             searchRect.bottom < headerRect.top || 
+                             searchRect.top > headerRect.bottom);
+        
+        // Hide search bar if colliding, show if not
+        searchContainer.style.opacity = isColliding ? '0' : '1';
+        searchContainer.style.pointerEvents = isColliding ? 'none' : 'auto';
+    }
+    
+    // Check collision on window resize and scroll
+    window.addEventListener('resize', checkSearchBarCollision);
+    window.addEventListener('scroll', checkSearchBarCollision);
+    
+    // Check collision periodically to handle dynamic layout changes
+    setInterval(checkSearchBarCollision, 500);
+    
+    // Initial collision check
+    setTimeout(checkSearchBarCollision, 100);
 }
 
 //====================================================================

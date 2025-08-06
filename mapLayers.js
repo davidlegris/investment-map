@@ -17,48 +17,16 @@ let getPopupContent; // Add global variable to store the function
 
 // Function to add the polygon layer to the map
 export function addPolygonLayer(map) {
-    
-    // Convert Web Mercator coordinates to lat/lng - Map is in projected coordinate system, so we need to convert to geographic coordinates
-    // ***should update in the future***
-    const convertCoordinates = (coords) => {
-        if (!coords || !coords.length) return [];
-        return coords.map(coord => {
-            if (Array.isArray(coord[0])) {
-                return convertCoordinates(coord);
-            } else {
-                
-                // Convert Web Mercator to lat/lng
-                const x = coord[0];
-                const y = coord[1];
-                const lng = (x / 20037508.34) * 180;
-                let lat = (y / 20037508.34) * 180;
-                lat = 180/Math.PI * (2 * Math.atan(Math.exp(lat * Math.PI / 180)) - Math.PI / 2);
-                return [lng, lat];
-            }
-        });
-    };
-
-    // Create a copy of the GeoJSON with converted coordinates
-    const convertedCDData = {
-        ...CDData,
-        features: CDData.features.map(feature => ({
-            ...feature,
-            geometry: {
-                ...feature.geometry,
-                coordinates: convertCoordinates(feature.geometry.coordinates)
-            }
-        }))
-    };
 
     // *** Ensures Region 3 is on top, otherwise it is underneath another layer***
-    convertedCDData.features.sort((a, b) => {
+    CDData.features.sort((a, b) => {
         if (a.properties.CDNAME === "Region 3") return 1;
         if (b.properties.CDNAME === "Region 3") return -1;
         return 0;
     });
 
     // Get all prevalence values for calculating quantiles
-    const allPrevalences = convertedCDData.features
+    const allPrevalences = CDData.features
         .map(feature => feature.properties['Prevalence of Low Income'])
         .filter(value => value !== undefined && value !== null);
 
@@ -79,7 +47,7 @@ export function addPolygonLayer(map) {
     };
 
     // ==================================================================
-    // For when I figure out how to show the choropleth
+    // For when I figure out how to best represent the choropleth
     // ==================================================================
     // Create a color scale from white to red
     // const getColor = (value, quantiles) => {
@@ -93,7 +61,7 @@ export function addPolygonLayer(map) {
 
 
     // Create the GeoJSON layer for census divisions
-    cdLayer = L.geoJSON(convertedCDData, {
+    cdLayer = L.geoJSON(CDData, {
         style: function(feature) {
             const prevalence = feature.properties['Prevalence of Low Income'];
             

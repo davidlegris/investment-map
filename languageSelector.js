@@ -102,7 +102,7 @@ languagePopup.style.maxWidth = "90%";
 
 // Create title
 const title = document.createElement("h2");
-title.textContent = "Select Language / Choisir la langue";
+title.textContent = "Select Language / Sélectionnez la langue";
 title.style.marginTop = "0";
 title.style.color = "#D71900";
 title.style.fontSize = "24px";
@@ -199,7 +199,7 @@ function selectLanguage(language) {
         continueButton.textContent = "Continue";
     } else {
         messageTitle.textContent = "Bienvenue";
-        messageContent.textContent = " J’ai créé cette application durant mon stage chez Centraide United Way Canada. L’application originale avait été conçue pour aider l’organisation à visualiser ses investissements en lien avec les caractéristiques démographiques des zones desservies. Comme une grande partie de ces données est sensible, j’ai généralisé l’application tout en conservant la majeure partie de sa forme et de ses fonctionnalités originales. Toutes les données d’investissement dans l’application sont fictives, tandis que les données démographiques proviennent réellement du Recensement de 2021.";
+        messageContent.textContent = "J\’ai créé cette application lors de mon stage chez Centraide United Way Canada. L\’application originale a été conçue pour aider l\’organisation à visualiser ses investissements en fonction des caractéristiques démographiques des zones desservies. Comme une grande partie de ces données sont sensibles, j\’ai généralisé l\’application, tout en conservant la plupart de la forme et de la fonctionnalité d\’origine. Toutes les données sur l\’investissement dans l\’application sont fabriquées, tandis que les données démographiques représentent les données réelles du Recensement de 2021.";
         continueButton.textContent = "Continuer";
     }
     
