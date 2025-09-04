@@ -161,7 +161,7 @@ export function updatePanelContent(props, isMultiple = false) {
                             return `
                                 <div style="margin-bottom: 15px; padding: 10px; background: #f8f9fa; border-radius: 4px;">
                                     <h4 style="margin: 0 0 8px 0; color: #4a2b7a;">Numéro d'investissement: EXEMPLE</h4>
-                                    <p style="margin: 5px 0;"><strong>Allocation:</strong> EXEMPLE</p>
+                                    <p style="margin: 5px 0;"><strong>Allocation:</strong> $${String(point.properties.allocation).replace(".",",") /* replaces the period with comma for French language */ }</p>
                                     <p style="margin: 5px 0;"><strong>Programme:</strong> EXEMPLE</p>
                                 </div>
                             `;
@@ -192,8 +192,8 @@ export function updatePanelContent(props, isMultiple = false) {
                             return `
                                 <div style="margin-bottom: 15px; padding: 10px; background: #f8f9fa; border-radius: 4px;">
                                     <h4 style="margin: 0 0 8px 0; color: #4a2b7a;">Investment: SAMPLE</h4>
-                                    <p style="margin: 5px 0;"><strong>Allocation: SAMPLE</strong></p>
-                                    <p style="margin: 5px 0;"><strong>Program:</strong> SAMPLE</p>
+                                    <p style="margin: 5px 0;"><strong>Allocation: $${point.properties.allocation}</strong></p>
+                                    <p style="margin: 5px 0;"><strong>Program:</strong> ${ point.properties.program_type}</p>
                                 </div>
                             `;
                         }).join('')}

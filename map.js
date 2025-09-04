@@ -18,7 +18,7 @@ let map;
 
 // Function to create and add the search control
 function addSearchControl() {
-    // Create search container
+    // Create search container div
     const searchContainer = document.createElement('div');
     searchContainer.id = 'search-container';
     searchContainer.style.position = 'absolute';
@@ -31,7 +31,7 @@ function addSearchControl() {
     searchContainer.style.boxShadow = '0 1px 5px rgba(0,0,0,0.2)';
     searchContainer.style.transition = 'opacity 0.3s ease';
 
-    // Create search input
+    // Create search input div
     const searchInput = document.createElement('input');
     searchInput.type = 'text';
     searchInput.id = 'search-input';
